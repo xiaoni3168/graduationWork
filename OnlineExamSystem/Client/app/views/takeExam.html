@@ -55,12 +55,54 @@
 								<div class="paper-fill-subject" ng-repeat="subject in examData.currentPaper.fillList">
 									<div class="subject-content">
 										<span ng-bind="$index+1"></span>
-										<span ng-bind="subject.subjectContent"></span>
+										<span ng-bind-html="subject.subjectContent"></span>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="answer-area pull-right"></div>
+						<div class="answer-area pull-right">
+							<div class="answer-head">
+								<span>答题卡</span>
+							</div>
+							<div class="chose-answer">
+								<div class="chose-answer-title">
+									<span>一、选择题(共</span>
+									<span ng-bind="examData.currentPaper.paperPerChose*examData.currentPaper.choseList.length"></span>
+									<span>分)</span>
+								</div>
+								<div class="chose-answer-area">
+									<table>
+										<thead>
+											<tr>
+												<th ng-repeat="i in examData.currentPaper.choseList" ng-bind="$index + 1"></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td ng-repeat="i in examData.currentPaper.choseList">
+													<button type="button" data-placeholder="--" class="btn btn-default" ng-model="i.userAnswer" bs-options="opt.index as opt.index for opt in i.answer.chose" bs-select></button>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="fill-answer">
+								<div class="paper-fill-title">
+									<span>二、填空题(共</span>
+									<span ng-bind="examData.currentPaper.paperPerFill*examData.totalFillAnswer"></span>
+									<span>分)</span>
+								</div>
+								<div class="fill-answer-area" ng-repeat="i in examData.currentPaper.fillList">
+									<div class="subject-content">
+										<span ng-bind="$index + 1"></span>
+										<span  ng-repeat="a in i.fillAnswer track by $index">
+											<input ng-model="a.userAnswer"></input>
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

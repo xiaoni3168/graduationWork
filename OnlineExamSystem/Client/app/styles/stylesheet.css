@@ -985,3 +985,37 @@
   margin-top: 10px;
   font-size: 12px;
 }
+#takeExam .answer-head{
+  text-align: center;
+  font-size: 17px;
+  font-weight: bold;
+}
+#takeExam .chose-answer-area{
+  margin-left: 20px;
+}
+#takeExam .chose-answer-area table thead th{
+  text-align: center;
+  width: 35px;
+  border: 1px solid;
+}
+#takeExam .chose-answer-area table tbody td{
+  text-align: center;
+  box-shadow: none;
+  border: 1px solid;
+  height: 35px;
+}
+#takeExam .chose-answer-area table tbody td button{
+  width: 40px;
+  border-radius: 0;
+}
+#takeExam .chose-answer-area table tbody td ul.dropdown-menu{
+  min-width: 20px;
+}
+#takeExam .fill-answer-area span input{
+  outline: none;
+  border: none;
+  border-bottom: 1px solid;
+  background-color: transparent;
+  width: 100px;
+  text-align: center;
+}

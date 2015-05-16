@@ -32,6 +32,9 @@ angular.module('clientApp')
 								Service.getChoseAnswer(result.data.id).then(function(_result) {
 									delete _result.data.answer.subjectAnswer;
 									result.data.answer = _result.data.answer;
+									angular.forEach(result.data.answer.chose, function(_n) {
+										_n.index = _n.item.split('、')[0];
+									});
 									paper.choseList.push(result.data);
 								});
 							}
@@ -41,11 +44,15 @@ angular.module('clientApp')
 				if(paper.paperFill) {
 					fillIds = paper.paperFill.split('^`');
 					paper.fillList = [];
-					angular.forEach(fillIds, function(n) {
+					angular.forEach(fillIds, function(n, index) {
 						Service.getSubjectById(n).then(function(result) {
 							if(result) {
 								Service.getFillAnswer(result.data.id).then(function(_result) {
 									$scope.examData.totalFillAnswer = $scope.examData.totalFillAnswer + _result.data.answer.fill.length;
+									result.data.fillAnswer = _result.data.answer.fill;
+									angular.forEach(result.data.fillAnswer, function(_n, _index) {
+										result.data.fillAnswer[_index] = '';
+									});
 									paper.fillList.push(result.data);
 								});
 							}
