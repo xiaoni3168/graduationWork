@@ -116,13 +116,13 @@ angular.module('clientApp')
 					});
 					checkbox.on('ifChecked', function(event) {
 						var checked = JSON.parse(event.target.defaultValue);
-						if(checked.subjectPoint == '01') {
+						if(checked.subjectType == '01') {
 							Service.getChoseAnswer(checked.id).then(function(result) {
 								checked.answer = result.data.answer;
 								$scope.generData.paper.choseList.push(checked);
 							});
 						}
-						if(checked.subjectPoint == '02') {
+						if(checked.subjectType == '02') {
 							Service.getFillAnswer(checked.id).then(function(result) {
 								checked.answer = result.data.answer;
 								$scope.generData.paper.fillList.totalAnswer = $scope.generData.paper.fillList.totalAnswer + checked.answer.fill.length;
@@ -132,14 +132,14 @@ angular.module('clientApp')
 					});
 					checkbox.on('ifUnchecked', function(event) {
 						var unchecked = JSON.parse(event.target.defaultValue);
-						if(unchecked.subjectPoint == '01') {
+						if(unchecked.subjectType == '01') {
 							angular.forEach($scope.generData.paper.choseList, function(n,index) {
 								if(unchecked.id == n.id) {
 									$scope.generData.paper.choseList.splice(index, 1);
 								}
 							});
 						}
-						if(unchecked.subjectPoint == '02') {
+						if(unchecked.subjectType == '02') {
 							angular.forEach($scope.generData.paper.fillList, function(n,index) {
 								if(unchecked.id == n.id) {
 									$scope.generData.paper.fillList.totalAnswer = $scope.generData.paper.fillList.totalAnswer - n.answer.fill.length;
