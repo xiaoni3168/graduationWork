@@ -1,0 +1,16 @@
+<div id="tipInfo" class="modal">
+	<div class="oe-tip-modal">
+		<div class="modal-header">
+			<span ng-bind="tipInfo.title"></span>
+		</div>
+		<div class="modal-body">
+			<span ng-bind-html="tipInfo.content"></span>
+		</div>
+		<div class="modal-footer">
+			<div>
+				<span class="btn btn-primary" ng-click="tipInfo.sure()">确定</span>
+				<span class="btn btn-default" ng-click="$hide()">取消</span>
+			</div>
+		</div>
+	</div>
+</div>

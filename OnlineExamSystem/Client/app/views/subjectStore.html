@@ -1,0 +1,83 @@
+<div id="subjectStore">
+	<div header></div>
+	<div class="oe-dashboard clearfix">
+		<div left-bar></div>
+		<div class="oe-workfield pull-right">
+			<div class="oe-work-body clearfix">
+				<div class="oe-body-store">
+					<div class="subtitle">
+						<h1>在线考试系统</h1>
+						<h4>——试题库</h4>
+					</div>
+					<div class="oe-subject-point">
+						<div ng-if="data.pointList.length == 0">
+							<span>暂无试题方向~,点击</span>
+							<span id="addPointN" class="glyphicon glyphicon-plus oe-add-point"></span>
+							<span>添加试题方向</span>
+						</div>
+						<div ng-if="data.pointList.length > 0" style="display: block;" class="clearfix">
+							<div ng-repeat="point in data.pointList" class="point-list pull-left" ng-click="subStoFun.operation('point',point)">
+								<span class="point-chose" ng-class="{true: 'current'}[data.currentPoint.id == point.id && !data.pointDelete]"><i ng-if="data.currentPoint.id == point.id && !data.pointDelete" class="glyphicon glyphicon-ok"></i><i ng-if="data.pointDelete" class="glyphicon glyphicon-minus delete"></i></span>
+								<span ng-bind="point.pointNum"></span>:
+								<span ng-bind="point.pointName"></span>
+							</div>
+							<span id="addPointL" class="btn btn-warning" style="margin-left: 30px;">添加<i class="glyphicon glyphicon-plus"></i></span>
+							<span class="btn btn-danger" style="margin-left: 10px;" ng-click="subStoFun.changeState('point')"><span ng-if="!data.pointDelete">删除</span><span ng-if="data.pointDelete">取消</span><i ng-class="{false: 'glyphicon glyphicon-refresh',true: 'glyphicon glyphicon-trash'}[!data.pointDelete]"></i></span>
+						</div>
+					</div>
+					<div class="oe-subject-type">
+						<div ng-if="data.typeList.length == 0">
+							<span>暂无试题类型~,点击</span>
+							<span id="addTypeN" class="glyphicon glyphicon-plus oe-add-point"></span>
+							<span>添加试题类型</span>
+						</div>
+						<div ng-if="data.typeList.length > 0" style="display: block;" class="clearfix">
+							<div ng-repeat="type in data.typeList" class="point-list pull-left" ng-click="subStoFun.operation('type',type)">
+								<span class="point-chose" ng-class="{true: 'current'}[data.currentType.id == type.id && !data.typeDelete]"><i ng-if="data.currentType.id == type.id && !data.typeDelete" class="glyphicon glyphicon-ok"></i><i ng-if="data.typeDelete" class="glyphicon glyphicon-minus delete"></i></span>
+								<span ng-bind="type.typeNum"></span>:
+								<span ng-bind="type.typeName"></span>
+							</div>
+							<span id="addTypeL" class="btn btn-warning" style="margin-left: 30px;">添加<i class="glyphicon glyphicon-plus"></i></span>
+							<span class="btn btn-danger" style="margin-left: 10px;" ng-click="subStoFun.changeState('type')"><span ng-if="!data.typeDelete">删除</span><span ng-if="data.typeDelete">取消</span><i ng-class="{false: 'glyphicon glyphicon-refresh',true: 'glyphicon glyphicon-trash'}[!data.typeDelete]"></i></span>
+						</div>
+					</div>
+					<div class="oe-subjects-table">
+						<table>
+							<thead>
+								<tr>
+									<th style="width:10%;"></th>
+									<th style="width:30%;">试题编号</th>
+									<th style="width:40%;">试题内容</th>
+									<th style="width:20%;">操作</th>
+								</tr>
+							</thead>
+							<tbody ng-if="data.subjectFindList.length > 0">
+								<tr ng-repeat="subject in data.subjectFindList">
+									<td ng-bind="$index + 1"></td>
+									<td ng-bind="subject.subjectNum"></td>
+									<td ng-bind="subject.subjectContent"></td>
+									<td>
+										<span class="glyphicon glyphicon-search"></span>
+										<span class="glyphicon glyphicon-edit"></span>
+										<span class="delete-subject glyphicon glyphicon-trash"></span>
+									</td>
+								</tr>
+							</tbody>
+							<tbody class="table-no-data" ng-if="!data.subjectFindList.length">
+								<tr>
+									<td colspan="4">
+										<span>暂无内容</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="oe-add-subject">
+						<span class="btn btn-success" ng-click="subStoFun.addSubject()" ng-disabled="!data.currentPoint || !data.currentType">添加试题</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div footer></div>
+</div>

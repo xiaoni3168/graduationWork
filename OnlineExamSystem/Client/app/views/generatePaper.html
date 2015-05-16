@@ -1,0 +1,105 @@
+<div id="generatePaper">
+	<div header></div>
+	<div class="oe-dashboard clearfix">
+		<div left-bar></div>
+		<div class="oe-workfield pull-right">
+			<div class="oe-work-body clearfix">
+				<div class="oe-body-generate">
+					<div class="subtitle">
+						<h1>在线考试系统</h1>
+						<h4>——试卷生成</h4>
+					</div>
+					<div class="oe-generate-content clearfix">
+						<div class="oe-generate-paper pull-left">
+							<div class="oe-search-area">
+								<button type="button" class="btn btn-default" ng-model="generData.subjectPoint" data-placeholder="请选择试题方向" bs-options="opt.pointNum as opt.pointName for opt in generData.pointSelectOpt" bs-select></button>
+								<button type="button" class="btn btn-default" ng-model="generData.subjectType" data-placeholder="请选择试题类型" bs-options="opt.typeNum as opt.typeName for opt in generData.typeSelectOpt" bs-select></button>
+								<button type="reset" class="btn btn-info pull-right" ng-click="generFun.resetSearch()">所有题目</button>
+							</div>
+							<div class="oe-paper-info">
+								<input type="text" placeholder="试卷标题" ng-model="generData.paper.paperHead.title" />
+								<input type="text" placeholder="考试时间" ng-model="generData.paper.paperHead.time" />
+								<input type="text" placeholder="考试截至时间" ng-model="generData.paper.dateline" data-date-format="yyyy-MM-dd" data-min-date="today" readonly="true" bs-datepicker/>
+							</div>
+							<div class="oe-score-area">
+								<input type="text" bs-tooltip data-title="选择题分数/道" ng-model="generData.paper.chosePerSco" />
+								<input type="text" bs-tooltip data-title="填空题分数/空" ng-model="generData.paper.fillPerSco" />
+								<input type="text" bs-tooltip data-title="简答题分数/道" ng-model="generData.paper.simplePerSco" />
+							</div>
+							<div class="oe-generate-table">
+								<table>
+									<thead>
+										<tr>
+											<td style="width:10%"></td>
+											<td style="width:20%">试题编号</td>
+											<td style="width:55%">试题内容</td>
+											<td style="width:15%">添加试题</td>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="subject in generData.subjectList" ng-class="{true:'interval'}[$index%2!=0]">
+											<td ng-bind="$index+1"></td>
+											<td ng-bind="subject.subjectNum"></td>
+											<td ng-bind="subject.subjectContent"></td>
+											<td>
+												<div class="icheckbox">
+													<input type="checkbox" value="{{subject}}" ng-checked="subject.checked" />
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="oe-generate-preview pull-right">
+							<div class="oe-paper">
+								<div ng-if="generData.paper.choseList.length < 1 && generData.paper.fillList.length < 1 && !generData.paper.paperHead.title" class="oe-paper-none">
+									<span>暂无试题~</span>
+								</div>
+								<div ng-if="generData.paper.paperHead.title" class="oe-paper-head">
+									<span class="paper-title" ng-bind="generData.paper.paperHead.title"></span>
+									<span class="btn btn-default generate-paper" ng-click="generFun.generatePaper()">生成试卷</span>
+									<span class="paper-time">
+										<span>考试时间:</span>
+										<span class="time" ng-bind="generData.paper.paperHead.time"></span>
+										<span>分钟</span>
+									</span>
+								</div>
+								<div ng-if="generData.paper.choseList.length > 0" class="oe-paper-chose">
+									<div class="paper-chose-title">
+										<span>一、选择题(共</span>
+										<span ng-bind="generData.paper.chosePerSco*generData.paper.choseList.length"></span>
+										<span>分)</span>
+									</div>
+									<div class="paper-chose-subject" ng-repeat="subject in generData.paper.choseList">
+										<div class="subject-content">
+											<span ng-bind="$index+1"></span>
+											<span ng-bind="subject.subjectContent"></span>
+										</div>
+										<div class="subject-chose">
+											<span class="chose-item" ng-repeat="item in subject.answer.chose" ng-bind="item.item"></span>
+										</div>
+									</div>
+								</div>
+								<div ng-if="generData.paper.fillList.length > 0" class="oe-paper-fill">
+									<div class="paper-fill-title">
+										<span>二、填空题(共</span>
+										<span ng-bind="generData.paper.fillPerSco*generData.paper.fillList.totalAnswer"></span>
+										<span>分)</span>
+									</div>
+									<div class="paper-fill-subject" ng-repeat="subject in generData.paper.fillList">
+										<div class="subject-content">
+											<span ng-bind="$index+1"></span>
+											<span ng-bind="subject.subjectContent"></span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div footer></div>
+</div>

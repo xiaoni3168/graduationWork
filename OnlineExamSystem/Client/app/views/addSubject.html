@@ -1,0 +1,74 @@
+<div id="addSubject">
+	<div header></div>
+	<div class="oe-dashboard clearfix">
+		<div left-bar></div>
+		<div class="oe-workfield pull-right">
+			<div class="oe-work-body">
+				<div class="oe-body-addSubject">
+					<div class="oe-addSubject-title">
+						<a class="oe-addSubject-home glyphicon glyphicon-home" ng-href="/#/subjectStore"></a>
+						<span ng-bind="addData.subjectPoint"></span>
+						:
+						<span ng-bind="addData.subjectType"></span>
+						<span title="取消添加" ng-if="addData.addSubject" ng-click="addFun.cancelEdit()" class="oe-addSubject-disEdit glyphicon glyphicon-floppy-remove"></span>
+					</div>
+				</div>
+				<div ng-if="addData.addSubject" class="oe-subject-chose">
+					<div>
+						<div class="oe-subject-num">
+							<label>题号:</label>
+							<input readonly="true" type="text" ng-model="addData.subjectPreNum" />
+							<input type="text" ng-model="addData.subjectSufNum" />
+						</div>
+						<div class="oe-subject-content clearfix">
+							<label class="pull-left">题干:</label>
+							<textarea rows="5" ng-model="addData.subjectContent"></textarea>
+						</div>
+						<div class="oe-subject-pic pull-right clearfix">
+							<span class="btn btn-warning oe-btn-upload">上传图片<i class="glyphicon glyphicon-cloud-upload"></i></span>
+							<input type="file" class="pic-upload" />
+							<span class="oe-img-preview pull-right"></span>
+						</div>
+					</div>
+					<div ng-if="addData.subjectTypeNum == '01'" class="oe-chose-item clearfix">
+						<label>选项:</label>
+						<div class="oe-chose pull-left" ng-repeat="chose in addData.choses">
+							<span class="oe-chose-check pull-left" ng-class="{true:'checked'}[chose.checked]" ng-click="addFun.setAnswer(chose)">
+								<span ng-if="chose.checked" class="oe-chose-checked"></span>
+							</span>
+							<div class="chose-close" ng-click="addFun.removeItem($index)"><i class="glyphicon glyphicon-remove"></i></div>
+							<input class="index" ng-model="chose.name" type="text" bs-tooltip="tooltip" data-title="选项名" />
+							<input class="value" ng-model="chose.value" type="text" placeholder="选项值" />
+						</div>
+						<span ng-click="addFun.addItem()" class="btn btn-primary pull-left"><i class="glyphicon glyphicon-plus-sign"></i></span>
+					</div>
+					<div ng-if="addData.subjectTypeNum == '02'" class="oe-chose-item clearfix">
+						<label>答案:</label>
+						<div class="oe-chose pull-left" ng-repeat="chose in addData.choses">
+							<div class="chose-close" ng-click="addFun.removeItem($index)"><i class="glyphicon glyphicon-remove"></i></div>
+							<input class="index" ng-model="chose.name" type="text" bs-tooltip="tooltip" data-title="索引" />
+							<input class="value" ng-model="chose.value" type="text" placeholder="值" />
+						</div>
+						<span ng-click="addFun.addItem()" class="btn btn-primary pull-left"><i class="glyphicon glyphicon-plus-sign"></i></span>
+					</div>
+					<div ng-if="addData.subjectTypeNum == '03'" class="oe-chose-item">
+						<label class="pull-left">答案:</label>
+						<textarea class="oe-simple-answer" ng-model="addData.subjectAnswer" rows="5"></textarea>
+					</div>
+					<div class="oe-chose-submit">
+						<span class="btn btn-success" ng-click="addFun.submitSubject()">提交题目至题库</span>
+					</div>
+				</div>
+				<div class="oe-add-temp" ng-if="!addData.addSubject && addData.tempSubject.length > 0">
+					<div ng-repeat="temp in addData.tempSubject">
+						<span class="glyphicon glyphicon-flash"></span>
+						<span ng-bind="temp.subjectNum"></span>
+						<span ng-bind="temp.subjectContent"></span>
+					</div>
+				</div>
+				<div class="oe-addSubject-add" ng-if="!addData.addSubject" ng-click="addFun.addSubject()"></div>
+			</div>
+		</div>
+	</div>
+	<div footer></div>
+</div>

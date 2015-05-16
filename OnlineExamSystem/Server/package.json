@@ -1,0 +1,16 @@
+{
+  "name": "Server",
+  "version": "1.0.0",
+  "description": "Online Exam System",
+  "main": "server.js",
+  "dependencies": {
+    "express": "4.x",
+    "mysql": "latest"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "nirui",
+  "license": "ISC"
+}
