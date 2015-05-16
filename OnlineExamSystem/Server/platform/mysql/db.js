@@ -362,5 +362,20 @@ module.exports = {
 				conn.release();
 			});
 		});
+	},
+
+	oeGetSubjectById: function(id, res) {
+		var sql = 'select * from oe_subject where id="' + id + '"';
+		POOL.getConnection(function(err, conn) {
+			conn.query(sql, function(err, result) {
+				if(err) {
+					console.log('oeGetSubjectById: ' + err);
+				}
+				if(result) {
+					res.status(200).send(result[0]);
+				}
+				conn.release();
+			});
+		});
 	}
 }

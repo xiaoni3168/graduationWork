@@ -936,3 +936,52 @@
 #takeExam .oe-paper-list .list-area .paper-dateline{
   margin-left: 20px;
 }
+#takeExam .oe-peper-exam{
+  margin-top: 20px;
+  padding: 0 20px;
+}
+#takeExam .oe-peper-exam .paper-area{
+  width: 50%;
+  height: 350px;
+  background-color: #FFFFFF;
+  overflow-y: scroll;
+  box-shadow: 0 0 5px; 
+}
+#takeExam .oe-peper-exam .answer-area{
+  width: 45%;
+  height: 350px;
+  border: 1px solid;
+}
+#takeExam .paper-title{
+  font-size: 27px;
+  font-weight: bold;
+}
+#takeExam .paper-head{
+  text-align: center;
+}
+#takeExam .paper-time{
+  display: block;
+  margin-left: 300px;
+  font-size: 12px;
+}
+#takeExam .paper-time .time{
+  text-decoration: underline;
+}
+#takeExam .paper-chose-subject{
+  margin-left: 20px;
+  margin-top: 10px;
+  font-size: 12px;
+}
+#takeExam .paper-area{
+  background-image: url(/images/paper_bk.png);
+  background-size: 100% 320px;
+  background-repeat: repeat-y;
+}
+#takeExam .chose-item{
+  margin-left: 10px;
+}
+#takeExam .paper-fill-subject{
+  margin-left: 20px;
+  margin-top: 10px;
+  font-size: 12px;
+}

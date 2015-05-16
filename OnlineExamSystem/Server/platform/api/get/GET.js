@@ -12,6 +12,8 @@ module.exports = {
 				params.subjectType = req.query.type;
 			}
 			db.oeGetSubjectByCondi(params,res);
+		} else if(req.query.id) {
+			db.oeGetSubjectById(req.query.id, res);
 		} else {
 			db.oeGetAllSubject(res);
 		}

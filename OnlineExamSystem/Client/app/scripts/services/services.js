@@ -107,4 +107,11 @@ angular.module('clientApp')
 				return data;
 			});
 		};
+
+		/** 根据ID获取试题信息*/
+		this.getSubjectById = function(id) {
+			return $http.get('/api/subject?id=' + id).then(function(data, status) {
+				return data;
+			});
+		};
 	}]);

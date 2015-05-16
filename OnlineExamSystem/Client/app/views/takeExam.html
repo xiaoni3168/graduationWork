@@ -9,16 +9,58 @@
 						<h1>在线考试系统</h1>
 						<h4>——参加考试</h4>
 					</div>
-					<div class="oe-paper-list">
+					<div ng-if="!examData.doExam" class="oe-paper-list">
 						<div class="list-title">试题列表
 							<span class="glyphicon glyphicon-refresh" ng-click="examFun.refresh()"></span>
 						</div>
-						<div class="list-area" ng-repeat="paper in examData.peperList">
+						<div class="list-area" ng-repeat="paper in examData.peperList" ng-click="examFun.exam(paper)">
 							<span class="glyphicon glyphicon-list-alt"></span>
 							<span ng-bind="paper.paperHead"></span>
 							<span class="paper-dateline">截至时间:</span>
 							<span ng-bind="paper.paperDateline|date:'yyyy-MM-dd'"></span>
 						</div>
+					</div>
+					<div ng-if="examData.doExam" class="oe-peper-exam clearfix">
+						<div class="paper-area pull-left">
+							<div class="paper-head">
+								<span class="paper-title" ng-bind="examData.currentPaper.paperHead"></span>
+								<span class="paper-time">
+									<span>考试时间:</span>
+									<span class="time" ng-bind="examData.currentPaper.paperTime"></span>
+									<span>分钟</span>
+								</span>
+							</div>
+							<div class="oe-paper-chose" ng-if="examData.currentPaper.choseList.length > 0">
+								<div class="paper-chose-title">
+									<span>一、选择题(共</span>
+									<span ng-bind="examData.currentPaper.paperPerChose*examData.currentPaper.choseList.length"></span>
+									<span>分)</span>
+								</div>
+								<div class="paper-chose-subject" ng-repeat="subject in examData.currentPaper.choseList">
+									<div class="subject-content">
+										<span ng-bind="$index + 1"></span>
+										<span ng-bind="subject.subjectContent"></span>
+									</div>
+									<div class="subject-chose">
+										<span class="chose-item" ng-repeat="item in subject.answer.chose" ng-bind="item.item"></span>
+									</div>
+								</div>
+							</div>
+							<div ng-if="examData.currentPaper.fillList.length > 0" class="oe-paper-fill">
+								<div class="paper-fill-title">
+									<span>二、填空题(共</span>
+									<span ng-bind="examData.currentPaper.paperPerFill*examData.totalFillAnswer"></span>
+									<span>分)</span>
+								</div>
+								<div class="paper-fill-subject" ng-repeat="subject in examData.currentPaper.fillList">
+									<div class="subject-content">
+										<span ng-bind="$index+1"></span>
+										<span ng-bind="subject.subjectContent"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="answer-area pull-right"></div>
 					</div>
 				</div>
 			</div>
