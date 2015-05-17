@@ -15,7 +15,8 @@
     "angular-bootstrap": "latest",
     "bootstrap-switch": "https://github.com/nostalgiaz/bootstrap-switch.git",
     "angular-strap": "~2.2.1",
-    "iCheck": "https://github.com/fronteed/icheck.git"
+    "iCheck": "https://github.com/fronteed/icheck.git",
+    "animate": "https://github.com/daneden/animate.css.git"
   },
   "devDependencies": {
     "angular-mocks": "~1.3.0",

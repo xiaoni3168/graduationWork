@@ -11,6 +11,7 @@ angular.module('clientApp')
 		$scope.generData.typeSelectOpt = [];
 
 		$scope.generData.paper = {};
+		$scope.generData.paper.totalFillAnswer = 0;
 
 		$scope.generData.paper.head = '';
 		$scope.generData.paper.choseList = [];
@@ -108,7 +109,6 @@ angular.module('clientApp')
 
 			initCheck: function() {
 				$timeout(function() {
-					$scope.generData.paper.fillList.totalAnswer = 0;
 
 					var checkbox = $('input[type="checkbox"]');
 					checkbox.iCheck({
@@ -125,7 +125,7 @@ angular.module('clientApp')
 						if(checked.subjectType == '02') {
 							Service.getFillAnswer(checked.id).then(function(result) {
 								checked.answer = result.data.answer;
-								$scope.generData.paper.fillList.totalAnswer = $scope.generData.paper.fillList.totalAnswer + checked.answer.fill.length;
+								$scope.generData.paper.totalFillAnswer = $scope.generData.paper.totalFillAnswer + checked.answer.fill.length;
 								$scope.generData.paper.fillList.push(checked);
 							});
 						}
@@ -142,14 +142,14 @@ angular.module('clientApp')
 						if(unchecked.subjectType == '02') {
 							angular.forEach($scope.generData.paper.fillList, function(n,index) {
 								if(unchecked.id == n.id) {
-									$scope.generData.paper.fillList.totalAnswer = $scope.generData.paper.fillList.totalAnswer - n.answer.fill.length;
+									$scope.generData.paper.totalFillAnswer = $scope.generData.paper.totalFillAnswer - n.answer.fill.length;
 									$scope.generData.paper.fillList.splice(index, 1);
 								}
 							});
 						}
 						$scope.$apply($scope.generData.paper);
 					});
-				},200);
+				},400);
 			},
 
 			resetSearch: function() {

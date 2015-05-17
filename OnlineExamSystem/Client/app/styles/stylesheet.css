@@ -1,3 +1,10 @@
+.modal.animated.ng-leave{
+  -webkit-animation-duration: .75s;
+  animation-duration: .75s;
+  -webkit-animation-name: bounceOut;
+  animation-name: bounceOut;
+}
+
 .oe-container{
 	width: 100%;
 	min-height: 637px;
@@ -990,6 +997,9 @@
   font-size: 17px;
   font-weight: bold;
 }
+#takeExam .answer-head span:first-child{
+  margin-left: 70px;
+}
 #takeExam .chose-answer-area{
   margin-left: 20px;
 }
@@ -1018,4 +1028,13 @@
   background-color: transparent;
   width: 100px;
   text-align: center;
+}
+#takeExam .submit-answer{
+  height: 25px;
+  font-size: 12px;
+  width: 70px;
+  text-align: center;
+  line-height: 14px;
+  padding: 5px 6px;
+  margin: 3px 3px;
 }

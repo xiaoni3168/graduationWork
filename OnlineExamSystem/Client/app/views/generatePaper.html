@@ -84,7 +84,7 @@
 								<div ng-if="generData.paper.fillList.length > 0" class="oe-paper-fill">
 									<div class="paper-fill-title">
 										<span>二、填空题(共</span>
-										<span ng-bind="generData.paper.fillPerSco*generData.paper.fillList.totalAnswer"></span>
+										<span ng-bind="generData.paper.fillPerSco*generData.paper.totalFillAnswer"></span>
 										<span>分)</span>
 									</div>
 									<div class="paper-fill-subject" ng-repeat="subject in generData.paper.fillList">

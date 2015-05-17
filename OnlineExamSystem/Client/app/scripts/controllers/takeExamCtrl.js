@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('clientApp')
-	.controller('takeExamCtrl', ['$scope','Service', function($scope,Service) {
+	.controller('takeExamCtrl', ['$scope','Service','$modal', function($scope,Service,$modal) {
 		var examData = $scope.examData = {};
 		var examFun = $scope.examFun = {};
 
@@ -72,6 +72,18 @@ angular.module('clientApp')
 				}
 				$scope.examData.currentPaper = paper;
 				$scope.examData.doExam = true;
+			},
+
+			submitAnswer: function() {
+				var modal = $modal({
+					scope: $scope,
+					template: 'views/modals/tipInfo.html',
+					show: true
+				});
+				var tipInfo = modal.$scope.tipInfo = {};
+				tipInfo.title = '提示';
+				tipInfo.content = '确定提交答题卡吗<br />提交后将无法修改';
+				
 			}
 		}
 		$scope.examFun.getAllPaper();

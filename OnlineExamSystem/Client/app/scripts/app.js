@@ -29,6 +29,11 @@ angular
       }
     });
   })
+  .config(function($modalProvider) {
+    angular.extend($modalProvider.defaults, {
+      animation: 'animated rubberBand'
+    });
+  })
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
