@@ -5,6 +5,7 @@
   "main": "server.js",
   "dependencies": {
     "express": "4.x",
+    "formidable": "^1.0.17",
     "mysql": "latest"
   },
   "scripts": {

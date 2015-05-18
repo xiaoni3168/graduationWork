@@ -12,7 +12,7 @@ angular.module('clientApp')
 
 		$scope.generData.paper = {};
 		$scope.generData.paper.totalFillAnswer = 0;
-
+		
 		$scope.generData.paper.head = '';
 		$scope.generData.paper.choseList = [];
 		$scope.generData.paper.fillList = [];

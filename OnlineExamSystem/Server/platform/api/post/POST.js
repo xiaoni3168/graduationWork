@@ -130,5 +130,15 @@ module.exports = {
 		req.on('end', function() {
 			db.oeGeneratePaper(postData, res);
 		});
+	},
+
+	fileUpload: function(baseDir, file, res) {
+		var params = {
+			fileName: file.fileupload.name,
+			fileSize: file.fileupload.size,
+			filePath: file.fileupload.path.replace(baseDir,''),
+			fileUploadTime: new Date().getTime()
+		}
+		db.oeFileUpload(params, res);
 	}
 }

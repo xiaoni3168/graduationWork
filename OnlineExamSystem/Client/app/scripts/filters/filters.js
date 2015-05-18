@@ -1,0 +1,77 @@
+'use strict';
+
+angular.module('clientApp')
+	.filter('fileSize', function() {
+		return function(size) {
+			var KB = 1024;
+			var MB = 1024 * 1024;
+			if(size / KB < 1) {
+				return Math.round(size) + 'b';
+			}
+			if(size / KB > 1 && size / MB < 1) {
+				return Math.round(size / KB) + 'kb';
+			}
+			if(size / MB > 1) {
+				return (size / MB).toFixed(1) + 'M';
+			}
+		}
+	})
+	.filter('fileIcon', function() {
+		return function(suffix) {
+			var userNavi = navigator.userAgent.toLowerCase();
+			var isWindows = false;
+			if(userNavi.indexOf('windows') > 0) {
+				isWindows = true;
+			}
+			if(suffix) {
+				suffix = suffix.toLowerCase();
+			}
+			switch(suffix) {
+				case 'docx':
+					if(isWindows) {
+						return '/images/fileicon/docx_win.png';
+						break;
+					} else {
+						return '/images/fileicon/docx_mac.png';
+						break;
+					}
+				case 'doc':
+					if(isWindows) {
+						return '/images/fileicon/docx_win.png';
+						break;
+					} else {
+						return '/images/fileicon/docx_mac.png';
+						break;
+					}
+				case 'xlsx':
+					if(isWindows) {
+						return '/images/fileicon/xlsx.png';
+						break;
+					} else {
+						return '/images/fileicon/xlsx.png';
+						break;
+					}
+				case 'txt':
+					return '/images/fileicon/text.png';
+					break;
+				case 'pdf':
+					return '/images/fileicon/pdf.png';
+					break;
+				case 'mp3':
+					return '/images/fileicon/mp3.png';
+					break;
+				case 'zip':
+					return '/images/fileicon/zip.png';
+					break;
+				case 'rar':
+					return '/images/fileicon/rar.png';
+					break;
+				case 'jpg':
+					return '/images/fileicon/jpeg.png';
+					break;
+				case 'mov':
+					return '/images/fileicon/mov.png';
+					break;
+			}
+		}
+	});

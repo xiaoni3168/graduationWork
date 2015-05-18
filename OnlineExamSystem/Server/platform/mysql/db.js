@@ -377,5 +377,20 @@ module.exports = {
 				conn.release();
 			});
 		});
+	},
+
+	oeFileUpload: function(params, res) {
+		var sql = 'insert into oe_file set ?';
+		POOL.getConnection(function(err, conn) {
+			conn.query(sql, params, function(err, result) {
+				if(err) {
+					console.log('oeFileUpload: ' + err);
+				}
+				if(result) {
+					res.status(202).send(params);
+				}
+				conn.release();
+			});
+		});
 	}
 }

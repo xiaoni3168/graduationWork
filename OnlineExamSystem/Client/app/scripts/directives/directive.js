@@ -60,3 +60,14 @@ angular.module('clientApp')
 			templateUrl: 'views/_footer.html'
 		}
 	}])
+	.directive('oneChange', ['$parse','$timeout', function($parse,$timeout) {
+		return {
+			restrict: 'A',
+			link: function(scope, elem, attrs) {
+				elem.on('change', function(event) {
+					var fn = $parse(attrs.oneChange);
+					fn(scope, {$event:event});
+				});
+			}
+		}
+	}])

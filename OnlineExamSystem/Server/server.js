@@ -2,6 +2,8 @@ var express = require('express');
 var querystring = require('querystring');
 var util = require('util');
 var app = express();
+var formidable = require('formidable');
+var fs = require('fs');
 
 console.log('加载数据库连接池...');
 var POOL = require('./platform/mysql/mySQLPool').POOL;
@@ -42,6 +44,36 @@ app.all('/subject/answer/simple', function(req, res) {
 app.all('/paper/generate', function(req, res) {
 	POST.generatePaper(req, res);	// 生成试卷
 });
+
+/*****************************************************/
+/*****************    文件上传     ********************/
+app.post('/upload', function(req, res) {
+	var today = new Date();
+	var dir = today.getFullYear() + '-' + today.getMonth() + '-' + today.getDate();
+
+	var uploadDir = __dirname + '/uploadDir/' + dir;
+	if(fs.existsSync(uploadDir)) {
+		console.log('文件夹' + dir + '已创建');
+	} else {
+		fs.mkdirSync(uploadDir);
+	}
+
+	var form = new formidable.IncomingForm();
+	form.uploadDir = uploadDir;
+	form.keepExtensions = true;
+	form.maxFieldsSize = 10 * 1024 * 1024;
+	form.parse(req, function(err, field, file) {
+		POST.fileUpload(__dirname, file, res);
+	});
+});
+
+/*****************     获取文件     *******************/
+app.all('/uploadDir/*', function(req, res) {
+	res.sendFile(__dirname + req.originalUrl);
+});
+
+/*****************************************************/
+
 
 // DELETE
 app.all('/subject/point/:id', function(req, res) {

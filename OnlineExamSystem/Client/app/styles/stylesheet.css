@@ -246,6 +246,8 @@
   overflow-y: scroll;
   overflow-x: hidden;
   position: absolute;
+  background-image: url(/images/work_bk.jpg);
+  background-repeat: no-repeat;
 }
 #dashboard .oe-body-home{
   text-align: center;
@@ -644,24 +646,80 @@
   height: 90px;
   width: 100px;
   margin-top: -90px;
-  margin-left: 30px;
   opacity: 0;
+  cursor: pointer;
 }
 #addSubject .oe-btn-upload{
   height: 90px;
   width: 100px;
   margin-top: 35px;
-  margin-left: 30px;
   font-size: 15px;
   line-height: 75px;
 }
 #addSubject .oe-img-preview{
   height: 150px;
-  width: 150px;
+  width: 370px;
   margin: 7px;
-  background-image: url(/images/img.png);
+}
+#addSubject .oe-progress{
+  margin-top: 164px;
+  height: 10px;
+  background: transparent;
+  box-shadow: none;
+}
+#addSubject .oe-persent-move{
+  display: inline-block;
+  height: 10px;
+  width: 40px;
+  font-size: 12px;
+  line-height: 11px;
+}
+#addSubject .file-icon{
+  width: 150px;
+}
+#addSubject .file-info{
+  height: 150px;
+  width: 200px;
+  display: inline-block;
+  padding: 10px 20px;
+}
+#addSubject .file-name{
+  font-size: 12px;
+  display: block;
+}
+#addSubject .file-size{
+  font-size: 20px;
+  display: block;
+  margin-top: 15px;
+}
+#addSubject .file-mp3-play{
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  margin-top: 45px;
+  margin-left: 50px;
+  background-image: url(/images/play/bfzn_004.png);
+  background-size: 50px 50px;
   background-repeat: no-repeat;
-  background-size: 150px 150px;
+  background-position: center;
+  cursor: pointer;
+}
+#addSubject .file-mp3-play.pause{
+  background-image: url(/images/play/bfzn_003.png);
+}
+#addSubject .file-mp3-play:hover{
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+
+  -webkit-animation-name:jello;
+            animation-name:jello;
+  -webkit-transform-origin: center;
+          transform-origin: center
+}
+#addSubject .upload-area-option{
+  margin-right: 25px;
 }
 #addSubject .oe-chose-submit{
 	text-align: center;
@@ -1037,4 +1095,14 @@
   line-height: 14px;
   padding: 5px 6px;
   margin: 3px 3px;
+}
+.oe-mov-play{
+  height: 50px;
+  width: 50px;
+  background-image: url(/images/play/bfzn_004.png);
+  background-repeat: no-repeat;
+  background-size: 50px 50px;
+  display: inline-block;
+  margin-left: 20px;
+  cursor: pointer;
 }

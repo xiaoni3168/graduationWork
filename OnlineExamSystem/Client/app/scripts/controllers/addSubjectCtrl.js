@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('clientApp')
-	.controller('addSubjectCtrl', ['$scope','$timeout','$dropdown','Service', function($scope,$timeout,$dropdown,Service) {
+	.controller('addSubjectCtrl', ['$scope','$timeout','$dropdown','Service','$modal', function($scope,$timeout,$dropdown,Service,$modal) {
 		$('div.oe-work-body').animate({
 			'height': '71%'
 		}, 700);
@@ -13,6 +13,10 @@ angular.module('clientApp')
 		addData.subjectPointNum = localStorage.subjectPointNum;
 		addData.subjectType = localStorage.subjectType;
 		addData.subjectTypeNum = localStorage.subjectTypeNum;
+
+		addData.musicPlay = false;
+
+		addData.uploadFile = [];
 
 		$scope.addData.subjectPreNum = addData.subjectPointNum + addData.subjectTypeNum;
 
@@ -122,6 +126,63 @@ angular.module('clientApp')
 						}
 					}
 				});
+			},
+
+			upload: function(event) {
+				var fd = new FormData();
+				var reader = new FileReader();
+				var xhr = new XMLHttpRequest();
+				var file = $('#fileupload').get(0).files[0];
+				reader.readAsDataURL(file);
+				file.suffix = file.name.split('.')[file.name.split('.').length - 1];
+				fd.append('fileupload', file);
+				$scope.addData.uploadFile.push(file);
+				reader.onload = function(e) {
+					if(xhr.upload) {
+						xhr.upload.addEventListener('progress', function(e) {
+							$timeout(function() {
+								file.loadState = {
+									width: parseInt(100.0 * e.loaded / e.total) +'%',
+									lineHeight: '12px'
+								}
+								file.persent = parseInt(100.0 * e.loaded / e.total) +'%';
+							},10);
+						})
+						xhr.onreadystatechange = function(e) {
+							if(xhr.readyState == 4) {
+								if(xhr.status == 202) {
+									console.log('上传成功')
+									$timeout(function() {
+										$scope.fileInfo = JSON.parse(xhr.response);
+										$scope.fileInfo.filePath = '/api' + $scope.fileInfo.filePath;
+									},100);
+								}
+							}
+						}
+					}
+					xhr.open('POST', '/api/upload', true);
+					xhr.send(fd);
+				}
+			},
+
+			musicOperation: function(flag) {
+				if($scope.addData.uploadFile[0].suffix == 'mp3') {
+					var audio = document.getElementById('audio');
+					if(!flag) {
+						audio.play();
+					} else {
+						audio.pause();
+					}
+					$scope.addData.musicPlay = !flag;
+				}
+				if($scope.addData.uploadFile[0].suffix.toLowerCase() == 'mov') {
+					var movModal = $modal({
+						scope: $scope,
+						template: 'views/modals/movModal.html',
+						show: true
+					});
+				}
+				
 			}
 		}
 	}]);

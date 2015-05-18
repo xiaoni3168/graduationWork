@@ -114,4 +114,11 @@ angular.module('clientApp')
 				return data;
 			});
 		};
+
+		/** 上传文件*/
+		this.upload = function(file) {
+			return $http.post('/api/upload', file).then(function(data, status) {
+				return data;
+			});
+		};
 	}]);

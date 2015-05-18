@@ -25,9 +25,28 @@
 							<textarea rows="5" ng-model="addData.subjectContent"></textarea>
 						</div>
 						<div class="oe-subject-pic pull-right clearfix">
-							<span class="btn btn-warning oe-btn-upload">上传图片<i class="glyphicon glyphicon-cloud-upload"></i></span>
-							<input type="file" class="pic-upload" />
-							<span class="oe-img-preview pull-right"></span>
+							<form enctype="multipart/form-data" >
+								<div class="upload-area-option pull-right">
+									<span class="btn btn-warning oe-btn-upload">上传文件<i class="glyphicon glyphicon-cloud-upload"></i></span>
+									<input type="file" id="fileupload" one-change="addFun.upload($event)" name="file" class="pic-upload"/>
+								</div>
+								<span class="oe-img-preview pull-left">
+									<span>
+										<span ng-if="addData.uploadFile[0].suffix == 'mp3' || addData.uploadFile[0].suffix.toLowerCase() == 'mov'" class="file-mp3-play" ng-class="{true:'pause'}[addData.musicPlay]" ng-click="addFun.musicOperation(addData.musicPlay)"></span>
+										<img class="file-icon" ng-src="{{addData.uploadFile[0].suffix | fileIcon}}">
+									</span>
+									<span class="file-info pull-right">
+										<span class="file-name" ng-bind="addData.uploadFile[0].name"></span>
+										<span class="file-size" ng-bind="addData.uploadFile[0].size | fileSize"></span>
+										<audio ng-if="addData.uploadFile[0].suffix == 'mp3'" id="audio" ng-src="{{fileInfo.filePath}}" controls="controls" style="width:0;height:0"></audio>
+									</span>
+								</span>
+							</form>
+							<div class="progress progress-striped active oe-progress">
+							   	<div class="progress-bar progress-bar-warning" role="progressbar"  aria-valuemin="0" aria-valuemax="100" ng-style="addData.uploadFile[0].loadState">
+							      <span id="persentMove" class="oe-persent-move" ng-bind="addData.uploadFile[0].persent"></span>
+							   </div>
+							</div>
 						</div>
 					</div>
 					<div ng-if="addData.subjectTypeNum == '01'" class="oe-chose-item clearfix">
