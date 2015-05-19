@@ -1,6 +1,17 @@
 'use strict';
 
 angular.module('clientApp')
+	.filter('musicTime', function() {
+		return function(time) {
+			var MTime = parseInt((time / 60).toString().split('.')[0]);
+			var STime = Math.round(time - MTime * 60);
+			if(STime < 10) {
+				return '' + MTime + ':0' + STime;
+			} else {
+				return '' + MTime + ':' + STime;
+			}
+		}
+	})
 	.filter('fileSize', function() {
 		return function(size) {
 			var KB = 1024;

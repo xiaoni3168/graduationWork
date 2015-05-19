@@ -40,5 +40,32 @@ module.exports = {
 
 	getAllPaper: function(req, res) {
 		db.oeGetAllPaper(res);
+	},
+
+	getAllFile: function(req, res) {
+		if(req.query.offset && req.query.limit) {
+			if(req.query.type) {
+				var params = {};
+				if(req.query.offset != '' && req.query.offset != 'undefined') {
+				params.offset = req.query.offset;
+				}
+				if(req.query.limit != '' && req.query.limit != 'undefined') {
+					params.limit = req.query.limit;
+				}
+				if(req.query.type != '' && req.query.type != 'undefined') {
+					params.type = req.query.type;
+				}
+				db.getAllFileByType(params, res);
+			} else {
+				var params = {};
+				if(req.query.offset != '' && req.query.offset != 'undefined') {
+				params.offset = req.query.offset;
+				}
+				if(req.query.limit != '' && req.query.limit != 'undefined') {
+					params.limit = req.query.limit;
+				}
+				db.getAllFile(params, res);
+			}
+		}
 	}
 }

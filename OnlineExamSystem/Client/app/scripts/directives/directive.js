@@ -49,6 +49,10 @@ angular.module('clientApp')
 
 					takeExam: function() {
 						$location.path('/takeExam');
+					},
+
+					fileManagement: function() {
+						$location.path('/fileManagement');
 					}
 				}
 			}]

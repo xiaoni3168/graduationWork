@@ -1,0 +1,64 @@
+<div id="fileManagement">
+	<div header></div>
+	<div class="oe-dashboard clearfix">
+		<div left-bar></div>
+		<div class="oe-workfield pull-right">
+			<div class="oe-work-body">
+				<div class="oe-body-fileManage">
+					<audio id="audio" ng-src="{{fileData.nowPlaySrc}}" ng-show="false"></audio>
+					<div class="subtitle">
+						<span class="oe-music-player clearfix" ng-class="{false:'playerHide'}[fileData.player]">
+							<span class="oe-music-icon pull-left" ng-click="fileFun.player(fileData.player)"></span>
+							<marquee class="oe-music-marq" scrollamount="2" ng-bind="fileData.playerData.fileName"></marquee>
+							<div ng-if="fileData.playerData.duration">
+								<span class="oe-music-duration" ng-bind="fileData.playerData.duration | musicTime"></span>
+								<span class="oe-music-currentTime" ng-bind="fileData.playerData.currentTime | musicTime"></span>
+							</div>
+						</span>
+						<h1>在线考试系统</h1>
+						<h4>——文件管理</h4>
+					</div>
+					<div class="oe-file-area">
+						<div class="oe-file-table">
+							<table>
+								<thead>
+									<tr>
+										<th width="10%">
+											<span>全选</span>
+											<input type="checkbox" />
+										</th>
+										<th width="30%">文件名</th>
+										<th width="10%">文件类型</th>
+										<th width="10%">文件大小</th>
+										<th width="20%">文件上传时间</th>
+										<th width="20%">操作</th>
+									</tr>
+								</thead>
+								<tbody ng-if="fileData.fileList.length > 0">
+									<tr ng-repeat="file in fileData.fileList" ng-class="{true:'interval'}[$index%2!=0]">
+										<td></td>
+										<td for="fileName" ng-bind="file.fileName"></td>
+										<td>
+											<img class="table-img" ng-src="{{file.suffix | fileIcon}}">
+										</td>
+										<td ng-bind="file.fileSize | fileSize"></td>
+										<td ng-bind="file.fileUploadTime | date:'yyyy-MM-dd HH:mm:ss'"></td>
+										<td>
+											<span class="btn btn-info" ng-click="fileFun.audioControl(file)">Play</span>
+										</td>
+									</tr>
+								</tbody>
+								<tbody ng-if="fileData.fileList.length < 1">
+									<tr>
+										<td></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div footer></div>
+</div>

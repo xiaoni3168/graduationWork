@@ -121,4 +121,17 @@ angular.module('clientApp')
 				return data;
 			});
 		};
+
+		/** 获取文件(分页)*/
+		this.getFiles = function(params) {
+			var herf = '';
+			for(var i in params) {
+				if(params[i] || typeof(params[i]) == 'number') {
+					herf = herf + i + '=' + params[i] + '&';
+				}
+			}
+			return $http.get('/api/file?' + herf).then(function(data, status) {
+				return data;
+			});
+		};
 	}]);

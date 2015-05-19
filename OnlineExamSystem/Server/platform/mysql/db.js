@@ -392,5 +392,35 @@ module.exports = {
 				conn.release();
 			});
 		});
+	},
+
+	getAllFileByType: function(params, res) {
+		var sql = 'select * from oe_file where fileName like "%.' + params.type + '" limit ' + params.offset + ',' + params.limit;
+		POOL.getConnection(function(err, conn) {
+			conn.query(sql, function(err, result) {
+				if(err) {
+					console.log('getAllFileByType: ' + err);
+				}
+				if(result) {
+					res.status(200).send(result);
+				}
+				conn.release();
+			});
+		});
+	},
+
+	getAllFile: function(params, res) {
+		var sql = 'select * from oe_file limit ' + params.offset + ',' + params.limit;
+		POOL.getConnection(function(err, conn) {
+			conn.query(sql, function(err, result) {
+				if(err) {
+					console.log('getAllFile: ' + err);
+				}
+				if(result) {
+					res.status(200).send(result);
+				}
+				conn.release();
+			});
+		});
 	}
 }

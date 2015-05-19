@@ -52,19 +52,17 @@ app.post('/upload', function(req, res) {
 	var dir = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 
 	var uploadDir = __dirname + '/uploadDir/';
-	var realDir = '';
+	var	realDir = uploadDir + dir;
 	if(fs.existsSync(uploadDir)) {
 	} else {
 		fs.mkdirSync(uploadDir);
 		console.log('正在创建文件夹:' + uploadDir);
-		realDir = uploadDir + dir;
 		if(fs.existsSync(realDir)) {
 		} else {
 			console.log('正在创建文件夹:' + realDir);
 			fs.mkdirSync(realDir);
 		}
 	}
-	
 
 	var form = new formidable.IncomingForm();
 	form.uploadDir = realDir;
@@ -112,6 +110,9 @@ app.get('/subject/simple/answer/:id', function(req, res) {
 });
 app.get('/paper', function(req, res) {
 	GET.getAllPaper(req, res);	// 获取所有试卷信息
+});
+app.get('/file', function(req, res) {
+	GET.getAllFile(req, res);
 });
 
 app.listen(8080);

@@ -60,6 +60,10 @@ angular
         templateUrl: 'views/takeExam.html',
         controller: 'takeExamCtrl'
       })
+      .when('/fileManagement', {
+        templateUrl: 'views/fileManagement.html',
+        controller: 'fileManagementCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

@@ -1106,3 +1106,94 @@
   margin-left: 20px;
   cursor: pointer;
 }
+#fileManagement .oe-body-fileManage h1{
+  text-align: center;
+}
+#fileManagement .oe-body-fileManage h4{
+  display: inline-block;
+  float: right;
+  margin-top: -20px;
+  margin-right: 200px;
+}
+#fileManagement .oe-file-area{
+  margin-top: 20px;
+  padding: 5px 30px;
+}
+#fileManagement .oe-file-table table{
+  width: 100%;
+}
+#fileManagement .oe-file-table table thead tr{
+  background-image: url(/images/file_table_bk.png);
+  height: 40px;
+}
+#fileManagement .oe-file-table table thead tr th{
+  text-align: center;
+  font-size: 17px;
+  font-weight: 100;
+  color: #1D1D1D;
+}
+#fileManagement .oe-file-table table thead tr th:first-child{
+  font-size: 12px;
+}
+#fileManagement .oe-file-table table thead tr th:first-child span{
+  display: block;
+}
+#fileManagement .oe-file-table table thead tr th:first-child input{
+  margin: 0;
+}
+#fileManagement .table-img{
+  width: 45px;
+}
+#fileManagement .oe-file-table table tbody tr{
+  background-color: #FAFAFA;
+  height: 50px;
+}
+#fileManagement .oe-file-table table tbody tr.interval{
+  background-color: #F4F6F5
+}
+#fileManagement .oe-file-table table tbody tr td{
+  border: none;
+  text-align: center;
+}
+#fileManagement .oe-file-table table tbody tr td[for="fileName"]{
+  text-align: left;
+}
+#fileManagement .oe-music-player{
+  position: absolute;
+  height: 200px;
+  width: 300px;
+  background-color: transparent;
+  right: 0;
+  background-image: url(/images/player_bk.png);
+  background-repeat: no-repeat;
+  background-size: 300px 200px;
+  transition: 500ms;
+}
+#fileManagement .oe-music-player.playerHide{
+  right: -277px;
+  transition: 500ms;
+}
+#fileManagement .oe-music-marq{
+  color: #FFFFFF;
+  font-size: 15px;
+  margin-top: 18px;
+  width: 200px;
+}
+#fileManagement .oe-music-icon{
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+  margin-top: 3px;
+  cursor: pointer;
+}
+#fileManagement .oe-music-duration{
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: 100;
+}
+#fileManagement .oe-music-currentTime{
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: 100;
+}
