@@ -8,6 +8,9 @@ angular.module('clientApp')
 			if(STime < 10) {
 				return '' + MTime + ':0' + STime;
 			} else {
+				if(STime == 60) {
+					return '' + (MTime + 1) + ':' + '00';
+				}
 				return '' + MTime + ':' + STime;
 			}
 		}

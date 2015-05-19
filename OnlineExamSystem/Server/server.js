@@ -67,7 +67,7 @@ app.post('/upload', function(req, res) {
 	var form = new formidable.IncomingForm();
 	form.uploadDir = realDir;
 	form.keepExtensions = true;
-	form.maxFieldsSize = 10 * 1024 * 1024;
+	form.maxFieldsSize = 50 * 1024 * 1024;
 	form.parse(req, function(err, field, file) {
 		POST.fileUpload(__dirname, file, res);
 	});

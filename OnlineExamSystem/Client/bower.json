@@ -16,7 +16,8 @@
     "bootstrap-switch": "https://github.com/nostalgiaz/bootstrap-switch.git",
     "angular-strap": "~2.2.1",
     "iCheck": "https://github.com/fronteed/icheck.git",
-    "animate": "https://github.com/daneden/animate.css.git"
+    "animate": "https://github.com/daneden/animate.css.git",
+    "JavaScript-ID3-Reader": "https://github.com/aadsm/JavaScript-ID3-Reader.git"
   },
   "devDependencies": {
     "angular-mocks": "~1.3.0",

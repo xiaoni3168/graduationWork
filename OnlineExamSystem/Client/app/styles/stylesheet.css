@@ -1197,3 +1197,110 @@
   font-size: 12px;
   font-weight: 100;
 }
+#fileManagement .oe-picture-area{
+  display: inline-block;
+  margin-left: 40px;
+  margin-top: 10px;
+}
+#fileManagement .oe-music-picture{
+  width: 90px;
+  border-radius: 45px;
+  box-shadow: 0 0 5px #FFFFFF;
+
+  -webkit-animation-duration: 10s;
+  -webkit-animation-name: picture;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+}
+@keyframes picture{
+  from{
+    -webkit-transform: rotate(0deg);
+  }
+  to{
+    -webkit-transform: rotate(360deg);
+  }
+}
+#fileManagement .oe-player-operation{
+  padding-left: 30px;
+  margin-right: 20px;
+}
+#fileManagement .player-operation{
+  background-image: url(/images/playFS.png);
+  background-repeat: no-repeat;
+  background-size: 30px 30px;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+#fileManagement .player-operation.paused{
+  background-image: url(/images/pauseFS.png);
+}
+#fileManagement .player-operation.paused:hover{
+  background-image: url(/images/pauseHoverFS.png);
+}
+#fileManagement .player-operation:hover{
+  background-image: url(/images/playHoverFS.png);
+}
+#fileManagement .oe-music-durationBar{
+  display: inline-block;
+  background-color: #FFFFFF;
+  width: 170px;
+  height: 2px;
+  margin-left: 15px;
+}
+#fileManagement .oe-music-nowBar{
+  background-color: #000000;
+  height: 2px;
+  width: 0;
+}
+#fileManagement .oe-music-arrow{
+  background-color: #000000;
+  transform: scale(5,5);
+  width: 2px;
+  height: 2px;
+  float: left;
+  cursor: pointer;
+  border-radius: 1px;
+  box-shadow: 0 0 2px #FFFFFF;
+}
+#fileManagement .oe-music-loop{
+  background-image: url(/images/miniSingleLoopClick.png);
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+  width: 20px;
+  height: 20px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+#fileManagement .oe-music-loop.loop{
+  background-image: url(/images/miniSingleLoopHover.png);
+}
+#fileManagement .oe-music-loop:hover{
+  background-image: url(/images/miniSingleLoopHover.png);
+}
+#fileManagement .oe-player-content{
+  padding-left: 30px;
+}
+#fileManagement .oe-music-volume{
+  margin-top: 10px;
+  margin-left: 15px;
+  background-color: #000000;
+  height: 85px;
+}
+#fileManagement .oe-music-volBar{
+  background-color: #FFFFFF;
+  width: 2px;
+  height: 0;
+  display: block;
+}
+#fileManagement .oe-music-volArr{
+  background-color: #000000;
+  display: block;
+  width: 2px;
+  height: 2px;
+  transform: scale(5,5);
+  border-radius: 1px;
+  box-shadow: 0 0 2px #FFFFFF;
+  cursor: pointer;
+}
