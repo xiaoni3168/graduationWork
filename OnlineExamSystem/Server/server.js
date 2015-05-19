@@ -51,15 +51,23 @@ app.post('/upload', function(req, res) {
 	var today = new Date();
 	var dir = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 
-	var uploadDir = __dirname + '/uploadDir/' + dir;
+	var uploadDir = __dirname + '/uploadDir/';
+	var realDir = '';
 	if(fs.existsSync(uploadDir)) {
 	} else {
-		console.log('正在创建文件夹:' + dir);
 		fs.mkdirSync(uploadDir);
+		console.log('正在创建文件夹:' + uploadDir);
+		realDir = uploadDir + dir;
+		if(fs.existsSync(realDir)) {
+		} else {
+			console.log('正在创建文件夹:' + realDir);
+			fs.mkdirSync(realDir);
+		}
 	}
+	
 
 	var form = new formidable.IncomingForm();
-	form.uploadDir = uploadDir;
+	form.uploadDir = realDir;
 	form.keepExtensions = true;
 	form.maxFieldsSize = 10 * 1024 * 1024;
 	form.parse(req, function(err, field, file) {
