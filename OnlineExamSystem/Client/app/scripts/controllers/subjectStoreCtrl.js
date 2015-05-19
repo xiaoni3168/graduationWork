@@ -203,5 +203,5 @@ angular.module('clientApp')
 				}
 			}
 			
-		},200);
+		},400);
 	}]);

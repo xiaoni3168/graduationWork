@@ -466,7 +466,7 @@
 	margin-top: 10px;
 }
 #subjectStore .popover-content .btn{
-	height: 35px !important;
+	height: 30px !important;
 	width: 53px !important;
 }
 #subjectStore .oe-subjects-table table tbody tr:hover{
@@ -558,10 +558,8 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: 110px 110px;
-  transition: 500ms;
 }
 #addSubject .oe-addSubject-add:hover{
-	transition: 500ms;
 	box-shadow: 0 0 10px;
 }
 #addSubject .oe-addSubject-add:active{

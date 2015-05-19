@@ -37,8 +37,8 @@
 								<span ng-bind="type.typeNum"></span>:
 								<span ng-bind="type.typeName"></span>
 							</div>
-							<span id="addTypeL" class="btn btn-warning" style="margin-left: 30px;">添加<i class="glyphicon glyphicon-plus"></i></span>
-							<span class="btn btn-danger" style="margin-left: 10px;" ng-click="subStoFun.changeState('type')"><span ng-if="!data.typeDelete">删除</span><span ng-if="data.typeDelete">取消</span><i ng-class="{false: 'glyphicon glyphicon-refresh',true: 'glyphicon glyphicon-trash'}[!data.typeDelete]"></i></span>
+							<span id="addTypeL" class="btn btn-warning" style="margin-left: 30px;" ng-disabled="true">添加<i class="glyphicon glyphicon-plus"></i></span>
+							<span class="btn btn-danger" style="margin-left: 10px;" ng-click="subStoFun.changeState('type')" ng-disabled="true"><span ng-if="!data.typeDelete">删除</span><span ng-if="data.typeDelete">取消</span><i ng-class="{false: 'glyphicon glyphicon-refresh',true: 'glyphicon glyphicon-trash'}[!data.typeDelete]"></i></span>
 						</div>
 					</div>
 					<div class="oe-subjects-table">
