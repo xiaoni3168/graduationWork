@@ -49,12 +49,12 @@ app.all('/paper/generate', function(req, res) {
 /*****************    文件上传     ********************/
 app.post('/upload', function(req, res) {
 	var today = new Date();
-	var dir = today.getFullYear() + '-' + today.getMonth() + '-' + today.getDate();
+	var dir = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 
 	var uploadDir = __dirname + '/uploadDir/' + dir;
 	if(fs.existsSync(uploadDir)) {
-		console.log('文件夹' + dir + '已创建');
 	} else {
+		console.log('正在创建文件夹:' + dir);
 		fs.mkdirSync(uploadDir);
 	}
 

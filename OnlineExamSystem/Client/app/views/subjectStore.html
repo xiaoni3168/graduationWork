@@ -52,7 +52,7 @@
 								</tr>
 							</thead>
 							<tbody ng-if="data.subjectFindList.length > 0">
-								<tr ng-repeat="subject in data.subjectFindList">
+								<tr ng-repeat="subject in data.subjectFindList" ng-class="{true:'interval'}[$index%2!=0]">
 									<td ng-bind="$index + 1"></td>
 									<td ng-bind="subject.subjectNum"></td>
 									<td ng-bind="subject.subjectContent"></td>

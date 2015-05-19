@@ -431,21 +431,27 @@
 	width: 100%;
 }
 #subjectStore .oe-subjects-table table th,td{
-	box-shadow: 0 0 10px;
+  border: 1px solid #EDEDED;
 }
 #subjectStore .oe-subjects-table table thead tr{
 	border-radius: 5px;
 }
 #subjectStore .oe-subjects-table table thead th{
 	text-align: center;
-	background-color: #ACA846;
-	border: 3px solid #C8C464;
+	background-color: #CCCCCC;
 	height: 30px;
+}
+#subjectStore .oe-subjects-table table tbody tr{
+  background-color: #FFFFFF;
+}
+#subjectStore .oe-subjects-table table tbody tr.interval{
+  background-color: #CCFFCC;
+}
+#subjectStore .oe-subjects-table table tbody tr:hover{
+  background-color: #77FF77;
 }
 #subjectStore .oe-subjects-table table tbody td{
 	text-align: center;
-	background-color: #ACA846;
-	border: 3px solid #C8C464;
 	height: 30px;
 	font-size: 12px;
 }
@@ -469,9 +475,6 @@
 	height: 30px !important;
 	width: 53px !important;
 }
-#subjectStore .oe-subjects-table table tbody tr:hover{
-	border-left: 4px solid #ACA846;
-}
 #subjectStore .table-no-data{
 
 }
@@ -479,9 +482,8 @@
 	border-left: none !important;
 }
 #subjectStore .table-no-data td{
-  background-color: #ACA846;
+  background-color: #FFFFFF;
   height: 140px !important;
-  border: 3px solid #C8C464;
 }
 #subjectStore .table-no-data td span{
 	font-size: 17px !important;
