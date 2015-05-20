@@ -4,15 +4,15 @@
 			<span>参加考试</span>
 			<span ng-class="{true:'glyphicon glyphicon-hand-left'}[data.currHover==0]"></span>
 		</div>
-		<div class="oe-left-item" ng-if="data.userStatus == 0" ng-mouseenter="fn.hover(1)" ng-mouseleave="fn.leave()">
+		<div class="oe-left-item" ng-if="data.userStatus == 2" ng-mouseenter="fn.hover(1)" ng-mouseleave="fn.leave()">
 			<span>考前复习</span>
 			<span ng-class="{true:'glyphicon glyphicon-hand-left'}[data.currHover==1]"></span>
 		</div>
-		<div class="oe-left-item" ng-if="data.userStatus == 0" ng-mouseenter="fn.hover(2)" ng-mouseleave="fn.leave()">
+		<div class="oe-left-item" ng-if="data.userStatus == 2" ng-mouseenter="fn.hover(2)" ng-mouseleave="fn.leave()">
 			<span>回顾考题</span>
 			<span ng-class="{true:'glyphicon glyphicon-hand-left'}[data.currHover==2]"></span>
 		</div>
-		<div class="oe-left-item" ng-mouseenter="fn.hover(3)" ng-mouseleave="fn.leave()">
+		<div class="oe-left-item" ng-if="data.userStatus == 2" ng-mouseenter="fn.hover(3)" ng-mouseleave="fn.leave()">
 			<span>师生答疑</span>
 			<span ng-class="{true:'glyphicon glyphicon-hand-left'}[data.currHover==3]"></span>
 		</div>
@@ -28,11 +28,11 @@
 			<span>成绩查询</span>
 			<span ng-class="{true:'glyphicon glyphicon-hand-left'}[data.currHover==6]"></span>
 		</div>
-		<div class="oe-left-item" ng-if="data.userStatus == 0" ng-mouseenter="fn.hover(7)" ng-mouseleave="fn.leave()">
+		<div class="oe-left-item" ng-if="data.userStatus == 2" ng-mouseenter="fn.hover(7)" ng-mouseleave="fn.leave()">
 			<span>在线笔记</span>
 			<span ng-class="{true:'glyphicon glyphicon-hand-left'}[data.currHover==7]"></span>
 		</div>
-		<div class="oe-left-item" ng-mouseenter="fn.hover(8)" ng-mouseleave="fn.leave()" ng-click="fn.fileManagement()">
+		<div class="oe-left-item" ng-if="data.userStatus == 2" ng-mouseenter="fn.hover(8)" ng-mouseleave="fn.leave()" ng-click="fn.fileManagement()">
 			<span>文件管理</span>
 			<span ng-class="{true:'glyphicon glyphicon-hand-left'}[data.currHover==8]"></span>
 		</div>
