@@ -16,7 +16,9 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'mgcrea.ngStrap'
+    'mgcrea.ngStrap',
+    'ui.bootstrap.pagination',
+    'ui.bootstrap.tpls'
   ])
   .run(function($rootScope,$location) {
     $rootScope.$on('$routeChangeStart', function() {

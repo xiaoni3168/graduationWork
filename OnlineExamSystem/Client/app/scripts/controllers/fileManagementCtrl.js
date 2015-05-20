@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('clientApp')
-	.controller('fileManagementCtrl', ['$scope','Service', function($scope,Service) {
+	.controller('fileManagementCtrl', ['$scope','Service','$timeout', function($scope,Service,$timeout) {
 		var fileData = $scope.fileData = {};
 		var fileFun = $scope.fileFun = {};
 
@@ -10,19 +10,13 @@ angular.module('clientApp')
 		$scope.fileData.playerLoop = false;		// 是否单曲循环
 		$scope.fileData.playerData = {};
 
-		var params = {
-			limit: 6,		// 分页每页条数
+		fileData.currentPage = 1;
+
+		fileData.params = {
+			limit: 5,		// 分页每页条数
 			offset: 0 		// 偏移量
 		}
-		Service.getFiles(params).then(function(result) {
-			if(result) {
-				angular.forEach(result.data, function(n) {
-					n.suffix = n.fileName.split('.')[n.fileName.split('.').length - 1];
-					n.filePath = '/api' + n.filePath;
-				});
-				$scope.fileData.fileList = result.data;
-			}
-		});
+		
 
 		var checkbox = $('input[type="checkbox"]');
 		checkbox.iCheck({
@@ -34,7 +28,29 @@ angular.module('clientApp')
 		audio.autoplay = true;
 
 		$scope.fileFun = {
-			audioControl: function(file) {
+			getList: function() {
+				Service.getFiles($scope.fileData.params).then(function(result) {
+					if(result) {
+						angular.forEach(result.data.list, function(n) {
+							n.suffix = n.fileName.split('.')[n.fileName.split('.').length - 1];
+							n.url = '/api/download' + n.filePath;
+							n.filePath = '/api' + n.filePath;
+						});
+						$scope.fileData.fileList = result.data.list;
+						$scope.fileData.listTotal = result.data.total;
+					}
+				});
+			},
+
+			audioControl: function(file, event) {
+				if($scope.fileData.currentDClickTr) {
+					$scope.fileData.currentDClickTr.removeClass('DClickTr');
+					$(event.currentTarget).addClass('DClickTr');
+					$scope.fileData.currentDClickTr = $(event.currentTarget);
+				} else {
+					$(event.currentTarget).addClass('DClickTr');
+					$scope.fileData.currentDClickTr = $(event.currentTarget);
+				}
 				$scope.fileData.nowPlaySrc = file.filePath;	// 音乐播放地址
 				$scope.fileData.playerData = file;
 				audio.onplay = function(e) {
@@ -153,6 +169,29 @@ angular.module('clientApp')
 				} else {
 					audio.loop = false;
 				}
+			},
+
+			pageChanged: function() {
+				$scope.fileData.params.offset = $scope.fileData.params.limit * ($scope.fileData.currentPage - 1);
+				$scope.fileFun.getList();
+			},
+
+			musicFocus: function(event) {
+				if($scope.currentClickTr) {
+					$scope.currentClickTr.removeClass('clickTr');
+					$(event.currentTarget).addClass('clickTr');
+					$scope.currentClickTr = $(event.currentTarget);
+				} else {
+					$(event.currentTarget).addClass('clickTr');
+					$scope.currentClickTr = $(event.currentTarget);
+				}
+			},
+
+			fileDownload: function(file) {
+				$timeout(function() {
+					$('#uploadFrame').get(0).src = file.url;
+				}, 10);
 			}
 		}
+		$scope.fileFun.getList();
 	}]);

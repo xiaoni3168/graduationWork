@@ -1147,9 +1147,24 @@
 #fileManagement .oe-file-table table tbody tr{
   background-color: #FAFAFA;
   height: 50px;
+  border-left: 3px solid #FAFAFA;
+}
+#fileManagement .oe-file-table table tbody tr:hover{
+  border-left: 3px solid #26BA60;
 }
 #fileManagement .oe-file-table table tbody tr.interval{
-  background-color: #F4F6F5
+  background-color: #F4F6F5;
+}
+.clickTr{
+  background-color: #20A453 !important;
+  border-left: 3px solid #20A453 !important;
+  color: #FFFFFF !important;
+}
+.clickTr:hover{
+  border-left: 3px solid #26BA60;
+}
+.DClickTr{
+  color: #20A453;
 }
 #fileManagement .oe-file-table table tbody tr td{
   border: none;
@@ -1158,7 +1173,23 @@
 #fileManagement .oe-file-table table tbody tr td[for="fileName"]{
   text-align: left;
 }
+#fileManagement .oe-file-table table tbody tr td span.glyphicon-cloud-download{
+  cursor: pointer;
+  font-size: 21px;
+}
+#fileManagement .oe-file-table table tbody tr td span.glyphicon-cloud-download:hover{
+  color: #FF6633;
+
+  -webkit-animation-duration: 0.75s;
+  animation-duration: 0.75s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+
+  -webkit-animation-name: rubberBand;
+  animation-name: rubberBand;
+}
 #fileManagement .oe-music-player{
+  z-index: 1000;
   position: absolute;
   height: 200px;
   width: 300px;

@@ -6,6 +6,7 @@
 			<div class="oe-work-body">
 				<div class="oe-body-fileManage">
 					<audio id="audio" ng-src="{{fileData.nowPlaySrc}}" ng-show="false"></audio>
+					<iframe id="uploadFrame" style="width:0;height:0;"></iframe>
 					<div class="subtitle">
 						<span class="oe-music-player clearfix" ng-class="{false:'playerHide'}[fileData.player]">
 							<span class="oe-music-icon pull-left" ng-click="fileFun.player(fileData.player)"></span>
@@ -53,7 +54,7 @@
 									</tr>
 								</thead>
 								<tbody ng-if="fileData.fileList.length > 0">
-									<tr ng-repeat="file in fileData.fileList" ng-class="{true:'interval'}[$index%2!=0]">
+									<tr ng-repeat="file in fileData.fileList" ng-class="{true:'interval'}[$index%2!=0]" ng-dblclick="fileFun.audioControl(file,$event)" ng-click="fileFun.musicFocus($event)">
 										<td></td>
 										<td for="fileName" ng-bind="file.fileName"></td>
 										<td>
@@ -62,7 +63,7 @@
 										<td ng-bind="file.fileSize | fileSize"></td>
 										<td ng-bind="file.fileUploadTime | date:'yyyy-MM-dd HH:mm:ss'"></td>
 										<td>
-											<span ng-if="file.suffix == 'mp3'" class="btn btn-info" ng-click="fileFun.audioControl(file)">Play</span>
+											<span class="glyphicon glyphicon-cloud-download" ng-click="fileFun.fileDownload(file)"></span>
 										</td>
 									</tr>
 								</tbody>
@@ -72,6 +73,13 @@
 									</tr>
 								</tbody>
 							</table>
+							<div class="oe-page pull-right">
+								<pagination total-items="fileData.listTotal" ng-model="fileData.currentPage"
+                                        	class="pagination-sm pull-left" items-per-page="fileData.params.limit" max-size="fileData.params.limit"
+                                        	previous-text="上一页" next-text="下一页" first-text="第一页"
+                                        	last-text="最后一页" ng-change="fileFun.pageChanged()">
+                            	</pagination>
+							</div>
 						</div>
 					</div>
 				</div>

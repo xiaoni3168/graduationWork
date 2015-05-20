@@ -395,7 +395,7 @@ module.exports = {
 	},
 
 	getAllFileByType: function(params, res) {
-		var sql = 'select * from oe_file where fileName like "%.' + params.type + '" limit ' + params.offset + ',' + params.limit;
+		var sql = 'select sql_calc_found_rows * from oe_file where fileName like "%.' + params.type + '" limit ' + params.offset + ',' + params.limit;
 		POOL.getConnection(function(err, conn) {
 			conn.query(sql, function(err, result) {
 				if(err) {
@@ -410,14 +410,39 @@ module.exports = {
 	},
 
 	getAllFile: function(params, res) {
-		var sql = 'select * from oe_file limit ' + params.offset + ',' + params.limit;
+		var sql = 'select sql_calc_found_rows * from oe_file limit ' + params.offset + ',' + params.limit;
 		POOL.getConnection(function(err, conn) {
 			conn.query(sql, function(err, result) {
+				var data = {};
 				if(err) {
 					console.log('getAllFile: ' + err);
 				}
 				if(result) {
-					res.status(200).send(result);
+					data.list = result;
+					conn.query('select found_rows()', function(_err, _result) {
+						if(_err) {
+							console.log('getAllFile: ' + _err);
+						}
+						if(_result) {
+							data.total = _result[0]['found_rows()'];
+							res.status(200).send(data);
+						}
+					});
+				}
+				conn.release();
+			});
+		});
+	},
+
+	oeGetFileByUpload: function(path, name, res) {
+		var sql = 'select * from oe_file where filePath="' + name + '"';
+		POOL.getConnection(function(err, conn) {
+			conn.query(sql, function(err, result) {
+				if(err) {
+					console.log('oeGetFileByUpload: ' + err);
+				}
+				if(result) {
+					res.download(path, result[0].fileName);
 				}
 				conn.release();
 			});

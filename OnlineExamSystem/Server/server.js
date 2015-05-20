@@ -5,6 +5,20 @@ var app = express();
 var formidable = require('formidable');
 var fs = require('fs');
 
+require('http').ServerResponse.prototype.download = function(path, filename, fn) {
+	var self = this;
+	if('function' == typeof filename) {
+		fn = filename;
+		filename = null;
+	}
+	this.attachment(filename || path).sendFile(path, function(err) {
+		if(fn) return fn(err);
+		if(err) {
+			self.req.next('ENOENT' == err.code ? null : err);
+		}
+	});
+}
+
 console.log('加载数据库连接池...');
 var POOL = require('./platform/mysql/mySQLPool').POOL;
 
@@ -54,6 +68,11 @@ app.post('/upload', function(req, res) {
 	var uploadDir = __dirname + '/uploadDir/';
 	var	realDir = uploadDir + dir;
 	if(fs.existsSync(uploadDir)) {
+		if(fs.existsSync(realDir)) {
+		} else {
+			console.log('正在创建文件夹:' + realDir);
+			fs.mkdirSync(realDir);
+		}
 	} else {
 		fs.mkdirSync(uploadDir);
 		console.log('正在创建文件夹:' + uploadDir);
@@ -77,7 +96,10 @@ app.post('/upload', function(req, res) {
 app.all('/uploadDir/*', function(req, res) {
 	res.sendFile(__dirname + req.originalUrl);
 });
-
+app.all('/download/uploadDir/*', function(req, res) { // 下载
+	var downloadPath = __dirname + req.originalUrl.split('/download')[1];
+	GET.getFileByUpload(downloadPath,req,res);
+});
 /*****************************************************/
 
 

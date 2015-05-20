@@ -67,5 +67,10 @@ module.exports = {
 				db.getAllFile(params, res);
 			}
 		}
+	},
+
+	getFileByUpload: function(path, req, res) {
+		var uploadName = req.originalUrl.split('/download')[1];
+		db.oeGetFileByUpload(path, uploadName, res);
 	}
 }
