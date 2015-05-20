@@ -2,7 +2,7 @@ var mysql = require('mysql');
 var pool = mysql.createPool({
 	host: '127.0.0.1',
 	user: 'root',
-	password: 'ni19921210',
+	password: '123',
 	database: 'OESystem',
 	port: '3306'
 });
