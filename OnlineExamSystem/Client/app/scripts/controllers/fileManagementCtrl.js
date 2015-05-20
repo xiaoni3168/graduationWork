@@ -5,14 +5,14 @@ angular.module('clientApp')
 		var fileData = $scope.fileData = {};
 		var fileFun = $scope.fileFun = {};
 
-		$scope.fileData.player = false;
-		$scope.fileData.playerState = false;
-		$scope.fileData.playerLoop = false;
+		$scope.fileData.player = false;			// 播放器面板是否打开
+		$scope.fileData.playerState = false;	// 音乐播放状态
+		$scope.fileData.playerLoop = false;		// 是否单曲循环
 		$scope.fileData.playerData = {};
 
 		var params = {
-			limit: 6,
-			offset: 0
+			limit: 6,		// 分页每页条数
+			offset: 0 		// 偏移量
 		}
 		Service.getFiles(params).then(function(result) {
 			if(result) {
@@ -29,15 +29,16 @@ angular.module('clientApp')
 			checkboxClass: 'icheckbox_flat'
 		});
 
+		// H5 audio播放器
 		var audio = document.getElementById('audio');
 		audio.autoplay = true;
 
 		$scope.fileFun = {
 			audioControl: function(file) {
-				$scope.fileData.nowPlaySrc = file.filePath;
+				$scope.fileData.nowPlaySrc = file.filePath;	// 音乐播放地址
 				$scope.fileData.playerData = file;
 				audio.onplay = function(e) {
-					$scope.fileData.playerData.duration = e.target.duration;
+					$scope.fileData.playerData.duration = e.target.duration;	// 音乐总时长
 					$scope.fileData.playerData.volume = e.target.volume;
 					$scope.$apply($scope.fileData.playerData.duration);
 

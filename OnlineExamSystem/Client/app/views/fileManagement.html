@@ -62,7 +62,7 @@
 										<td ng-bind="file.fileSize | fileSize"></td>
 										<td ng-bind="file.fileUploadTime | date:'yyyy-MM-dd HH:mm:ss'"></td>
 										<td>
-											<span class="btn btn-info" ng-click="fileFun.audioControl(file)">Play</span>
+											<span ng-if="file.suffix == 'mp3'" class="btn btn-info" ng-click="fileFun.audioControl(file)">Play</span>
 										</td>
 									</tr>
 								</tbody>
