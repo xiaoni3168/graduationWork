@@ -53,6 +53,10 @@ angular.module('clientApp')
 
 					fileManagement: function() {
 						$location.path('/fileManagement');
+					},
+
+					queryScore: function() {
+						$location.path('/queryScore');
 					}
 				}
 			}]

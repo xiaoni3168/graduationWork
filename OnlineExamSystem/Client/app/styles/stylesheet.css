@@ -1304,3 +1304,61 @@
   box-shadow: 0 0 2px #FFFFFF;
   cursor: pointer;
 }
+#queryScore .oe-body-score h1{
+  text-align: center;
+}
+#queryScore .oe-body-score h4{
+  display: inline-block;
+  float: right;
+  margin-top: -20px;
+  margin-right: 200px;
+}
+#queryScore .oe-score-area{
+  width: 100%;
+  margin-top: 20px;
+  padding: 10px 30px;
+}
+#queryScore .score-search-area{
+  height: 40px;
+}
+#queryScore .score-search-area input{
+  border: none;
+  outline: none;
+  height: 30px;
+  border-radius: 3px;
+  padding-left: 5px;
+  font-size: 12px;
+}
+#queryScore .score-search-area input:focus{
+  box-shadow: 0 0 5px;
+}
+#queryScore .score-search-area span.btn{
+  height: 30px;
+  margin-top: 1px;
+  margin-left: 70px;
+  line-height: 17px;
+}
+#queryScore .oe-score-table table{
+  width: 100%;
+}
+#queryScore .oe-score-table table thead tr{
+  background-color: #bdbdbd;
+  height: 30px;
+}
+#queryScore .oe-score-table table thead tr th{
+  text-align: center;
+  border: 1px solid #ededed;
+}
+#queryScore .oe-score-table table tbody tr{
+  background-color: #FFFFFF;
+  height: 30px;
+}
+#queryScore .oe-score-table table tbody tr.interval{
+  background-color: #EEFFEE;
+}
+#queryScore .oe-score-table table tbody tr td{
+  border: 1px solid #ededed;
+}
+#queryScore .oe-score-table table tbody tr td:not(#paper){
+  text-align: center;
+}

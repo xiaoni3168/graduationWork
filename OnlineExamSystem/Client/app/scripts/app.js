@@ -64,6 +64,10 @@ angular
         templateUrl: 'views/fileManagement.html',
         controller: 'fileManagementCtrl'
       })
+      .when('/queryScore', {
+        templateUrl: 'views/queryScore.html',
+        controller: 'queryScoreCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

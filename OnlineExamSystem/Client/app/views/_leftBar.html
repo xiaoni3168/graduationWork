@@ -24,7 +24,7 @@
 			<span>生成试卷</span>
 			<span ng-class="{true:'glyphicon glyphicon-hand-left'}[data.currHover==5]"></span>
 		</div>
-		<div class="oe-left-item" ng-mouseenter="fn.hover(6)" ng-mouseleave="fn.leave()">
+		<div class="oe-left-item" ng-mouseenter="fn.hover(6)" ng-mouseleave="fn.leave()" ng-click="fn.queryScore()">
 			<span>成绩查询</span>
 			<span ng-class="{true:'glyphicon glyphicon-hand-left'}[data.currHover==6]"></span>
 		</div>
